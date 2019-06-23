@@ -23,7 +23,7 @@ export class LogoutComponent implements OnInit {
       this.router.navigate(['/', 'login']).then(nav => {
         console.log(nav); // true if navigation is successful
       }, err => {
-        console.log(err) // when there's an error
+        console.log(err) // log errs
       });
     }, 5000);
 

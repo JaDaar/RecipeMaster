@@ -13,6 +13,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { LogoutComponent } from './logout/logout.component';
+import { SidenavComponent } from './navigation/sidenav/sidenav.component';
+import { MainNavComponent } from './navigation/main-nav/main-nav.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { LogoutComponent } from './logout/logout.component';
     LoginComponent,
     WelcomeComponent,
     HomeComponent,
-    LogoutComponent
+    LogoutComponent,
+    SidenavComponent,
+    MainNavComponent
   ],
   imports: [
     BrowserModule,
