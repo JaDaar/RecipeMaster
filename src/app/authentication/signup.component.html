@@ -12,11 +12,15 @@
         <mat-error *ngIf="emailEntry.invalid">Email must be valid.</mat-error>
     </mat-form-field>
     <mat-form-field>
-        <input matInput type="password" placeholder="Password" ngModel required name="password" #passwordEntry="ngModel">
+        <input matInput type="password" placeholder="Password" ngModel required name="password" pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$' #passwordEntry="ngModel"
+        minlength="12" maxlength="24">
         <mat-error *ngIf="passwordEntry.hasError('required')">Password is required</mat-error>
+        <mat-error *ngIf="passwordEntry?.value.length<12">Password must be at least 12 characters in length.</mat-error>
+        <mat-error *ngIf="passwordEntry.invalid">Password should be at least 12 characters with at least one uppercase.</mat-error>
     </mat-form-field>
     <mat-form-field>
-        <input matInput type="password" placeholder="Password Verification" required name="passwordVerification" ngModel #passwordVerification="ngModel">
+        <input matInput type="password" placeholder="Password Verification" required name="passwordVerification" ngModel
+        #passwordVerification="ngModel" minlength="12" maxlength="24">
         <mat-error *ngIf="passwordEntry.value !== passwordVerification.value">Passwords must match.</mat-error>
     </mat-form-field>
     <mat-form-field>
