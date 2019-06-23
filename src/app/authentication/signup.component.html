@@ -1,17 +1,31 @@
 <section>
-  <form fxLayout="column" fxLayoutAlign="center center">
+  <form fxLayout="column" fxLayoutAlign="center center" #formSignup="ngForm" (ngSubmit)="onSubmit(formSignup)">
     <mat-form-field>
-      <input matInput type="firstName" placeholder="First Name">
+      <input matInput type="firstName" placeholder="First Name" required ngModel name="firstName">
     </mat-form-field>
     <mat-form-field>
-        <input matInput type="lastName" placeholder="Last Name">
+        <input matInput type="lastName" placeholder="Last Name" required ngModel name="lastName" >
     </mat-form-field>
     <mat-form-field>
-        <input matInput type="email" placeholder="Email">
+        <input matInput type="email" placeholder="Email" ngModel required email name="email" #emailEntry="ngModel">
+        <mat-error *ngIf="emailEntry.hasError('required')">Email is required</mat-error>
+        <mat-error *ngIf="emailEntry.invalid">Email must be valid.</mat-error>
     </mat-form-field>
     <mat-form-field>
-        <input matInput type="password" placeholder="Password">
+        <input matInput type="password" placeholder="Password" ngModel required name="password" #passwordEntry="ngModel">
+        <mat-error *ngIf="passwordEntry.hasError('required')">Password is required</mat-error>
     </mat-form-field>
+    <mat-form-field>
+        <input matInput type="password" placeholder="Password Verification" required name="passwordVerification" ngModel #passwordVerification="ngModel">
+        <mat-error *ngIf="passwordEntry.value !== passwordVerification.value">Passwords must match.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput [matDatepicker]="birthdate" required ngModel name="birthdate">
+        <mat-datepicker-toggle matSuffix [for]="birthdate"></mat-datepicker-toggle>
+        <mat-datepicker #birthdate></mat-datepicker>
+      </mat-form-field>
+    <mat-checkbox matInput required ngModel name="agree">Agree to Terms and Conditions</mat-checkbox>
+    <button type="submit" mat-raised-button color="primary" [disabled]="formSignup.invalid">Submit</button>
   </form>
 </section>
 
